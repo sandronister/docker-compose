@@ -1,0 +1,58 @@
+version: '3'
+
+services:
+    nginx:
+        build: 
+            dockerfile: ./docker/ngix.dockerfile
+            context: .
+        image: sandroni/ngxix
+        container_name: ngix
+        ports: 
+            - "80:80"
+        networks:
+            - production-network
+
+    mongodb:
+        image: mongodb
+        networks:
+            - production-network
+
+    node1:
+        build: 
+            dockerfile: ./docker/alura-books.dockerfile
+            context: .
+        image: sandroni/books
+        container_name: books1
+        ports:
+            - ˜3000˜
+        networks:
+            -production-network
+
+     node2:
+        build: 
+            dockerfile: ./docker/alura-books.dockerfile
+            context: .
+        image: sandroni/books
+        container_name: books2
+        ports:
+            - ˜3000˜
+        networks:
+            -production-network
+
+     node3:
+        build: 
+            dockerfile: ./docker/alura-books.dockerfile
+            context: .
+        image: sandroni/books
+        container_name: books3
+        ports:
+            - ˜3000˜
+        networks:
+            -production-network
+
+networks:
+    production-network:
+        driver:bridge
+        
+
+
